@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 
 defineProps<{
 	msg: string;
@@ -24,6 +24,8 @@ function toggleCustomHtmlDisplay() {
 			<a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
 			<a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
 		</h3>
+
+		<p>(isHtmlHidden state: {{ isHtmlHidden }})</p>
 
 		<p :hidden="isHtmlHidden" v-html="rawHtml"></p>
 
