@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
-defineProps<{
+const { msg, rawHtml, num } = defineProps<{
 	msg: string;
 	rawHtml: string;
-
 	num?: number;
 }>();
 
@@ -13,6 +12,9 @@ let isHtmlHidden = ref(false);
 function toggleCustomHtmlDisplay() {
 	isHtmlHidden.value = !isHtmlHidden.value;
 }
+
+const addPluralOrNot = computed(() => (num && num > 1 ? "s" : ""));
+const changeButtonVerb = computed(() => (isHtmlHidden ? "Display" : "Hide"));
 </script>
 
 <template>
@@ -20,7 +22,7 @@ function toggleCustomHtmlDisplay() {
 		<h1 class="green">{{ msg }}</h1>
 
 		<h3>
-			You’ve successfully created {{ num ?? "a" }} project{{ num && num > 1 ? "s" : "" }} with
+			You’ve successfully created {{ num ?? "a" }} project{{ addPluralOrNot }} with
 			<a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
 			<a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
 		</h3>
@@ -31,9 +33,7 @@ function toggleCustomHtmlDisplay() {
 
 		<p v-if="isHtmlHidden">Custom HTML is hidden !</p>
 
-		<button class="toggle-btn" @click="toggleCustomHtmlDisplay">
-			{{ isHtmlHidden ? "Display" : "Hide" }} custom HTML
-		</button>
+		<button class="toggle-btn" @click="toggleCustomHtmlDisplay">{{ changeButtonVerb }} custom HTML</button>
 	</div>
 </template>
 
