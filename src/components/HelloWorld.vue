@@ -19,7 +19,7 @@ const changeButtonVerb = computed(() => (isHtmlHidden ? "Display" : "Hide"));
 
 <template>
 	<div class="greetings">
-		<h1 class="green">{{ msg }}</h1>
+		<h1 :class="{ green: msg }">{{ msg }}</h1>
 
 		<h3>
 			You’ve successfully created {{ num ?? "a" }} project{{ addPluralOrNot }} with
@@ -27,7 +27,7 @@ const changeButtonVerb = computed(() => (isHtmlHidden ? "Display" : "Hide"));
 			<a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
 		</h3>
 
-		<p>(isHtmlHidden state: {{ isHtmlHidden }})</p>
+		<p :class="{ green: isHtmlHidden, red: !isHtmlHidden }">(isHtmlHidden state: {{ isHtmlHidden }})</p>
 
 		<p :hidden="isHtmlHidden" v-html="rawHtml"></p>
 
@@ -64,6 +64,10 @@ h3 {
 	padding: 5px;
 	background-color: hsla(160, 100%, 37%, 1);
 	min-width: 200px;
+}
+
+.red {
+	color: red;
 }
 
 @media (min-width: 1024px) {
