@@ -29,9 +29,9 @@ const changeButtonVerb = computed(() => (isHtmlHidden ? "Display" : "Hide"));
 
 		<p :class="{ green: isHtmlHidden, red: !isHtmlHidden }">(isHtmlHidden state: {{ isHtmlHidden }})</p>
 
-		<p :hidden="isHtmlHidden" v-html="rawHtml"></p>
-
 		<p v-if="isHtmlHidden">Custom HTML is hidden !</p>
+
+		<p v-else v-html="rawHtml"></p>
 
 		<button class="toggle-btn" @click="toggleCustomHtmlDisplay">{{ changeButtonVerb }} custom HTML</button>
 	</div>
@@ -68,6 +68,10 @@ h3 {
 
 .red {
 	color: red;
+}
+
+.green {
+	padding: 0;
 }
 
 @media (min-width: 1024px) {
