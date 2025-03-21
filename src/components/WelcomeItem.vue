@@ -1,13 +1,25 @@
+<script setup lang="ts">
+import VueIconSvgHelper from "./VueIconSvgHelper.vue";
+
+defineProps<{
+	iconName: string;
+	heading: string;
+	pContent: string;
+}>();
+</script>
+
 <template>
 	<div class="item">
 		<i>
-			<slot name="icon"></slot>
+			<VueIconSvgHelper :name="iconName" />
 		</i>
+
 		<div class="details">
 			<h3>
-				<slot name="heading"></slot>
+				{{ heading }}
 			</h3>
-			<slot></slot>
+
+			<p v-html="pContent" />
 		</div>
 	</div>
 </template>
