@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { onMounted, ref, useTemplateRef, watch } from "vue";
 
 const question = ref("");
 const answer = ref("Waiting for the question...");
@@ -23,6 +23,12 @@ watch(question, async (newQuestion, oldQuestion) => {
 		answer.value = "waiting for a real question with a question mark...";
 	}
 });
+
+const questionInput = useTemplateRef("question-input");
+
+onMounted(() => {
+	questionInput.value?.focus();
+});
 </script>
 
 <template>
@@ -32,7 +38,13 @@ watch(question, async (newQuestion, oldQuestion) => {
 		<div class="question-wrapper">
 			<label for="question"
 				>Ask a question that can be answered by yes or no (don't forget "?"):
-				<input id="question" name="question" type="text" v-model="question" :disabled="loadingState" />
+				<input
+					id="question"
+					name="question"
+					type="text"
+					v-model="question"
+					:disabled="loadingState"
+					ref="question-input" />
 			</label>
 
 			<p>{{ answer }}</p>
