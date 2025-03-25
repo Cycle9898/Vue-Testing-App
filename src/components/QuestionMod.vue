@@ -1,0 +1,62 @@
+<script setup lang="ts">
+import { ref, watch } from "vue";
+
+const question = ref("");
+const answer = ref("Waiting for the question...");
+const loadingState = ref(false);
+
+watch(question, async (newQuestion, oldQuestion) => {
+	if (newQuestion.includes("?")) {
+		loadingState.value = true;
+		answer.value = "Thinking...";
+
+		try {
+			const res = await fetch("https://yesno.wtf/api");
+			const receivedAnswer = await res.json().then(objRes => objRes.answer);
+			answer.value = "Answer: '" + receivedAnswer + "'";
+		} catch (error) {
+			answer.value = "Error! Could not reach the API. " + error;
+		} finally {
+			loadingState.value = false;
+		}
+	} else {
+		answer.value = "waiting for a real question with a question mark...";
+	}
+});
+</script>
+
+<template>
+	<div class="container">
+		<h2>Questions module (watcher)</h2>
+
+		<div class="question-wrapper">
+			<label for="question"
+				>Ask a question that can be answered by yes or no (don't forget "?"):
+				<input id="question" name="question" type="text" v-model="question" :disabled="loadingState" />
+			</label>
+
+			<p>{{ answer }}</p>
+		</div>
+	</div>
+</template>
+
+<style scoped>
+.container {
+	padding: 10px 15px;
+	border: 2px solid hsla(160, 100%, 37%, 1);
+	border-radius: 10px;
+}
+
+@media (min-width: 1024px) {
+	.question-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+	}
+
+	.question-wrapper input {
+		margin-top: 5px;
+		width: 100%;
+	}
+}
+</style>
