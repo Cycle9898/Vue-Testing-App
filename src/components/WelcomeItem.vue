@@ -6,6 +6,8 @@ defineProps<{
 	heading: string;
 	pContent: string;
 }>();
+
+const emit = defineEmits(["enlarge-text"]);
 </script>
 
 <template>
@@ -20,6 +22,8 @@ defineProps<{
 			</h3>
 
 			<p v-html="pContent" />
+
+			<button @click="emit('enlarge-text')">Enlarge text</button>
 		</div>
 	</div>
 </template>
@@ -34,6 +38,20 @@ defineProps<{
 .details {
 	flex: 1;
 	margin-left: 1rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.details button {
+	margin-top: 10px;
+	align-self: center;
+	margin-top: 5px;
+	cursor: pointer;
+	border: 2px solid black;
+	border-radius: 5px;
+	font-size: 0.8rem !important;
+	padding: 2px 5px;
+	background-color: hsla(160, 100%, 37%, 1);
 }
 
 i {
