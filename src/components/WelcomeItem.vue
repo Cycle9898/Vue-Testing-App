@@ -7,7 +7,11 @@ defineProps<{
 	pContent: string;
 }>();
 
-const emit = defineEmits(["enlarge-text"]);
+const emit = defineEmits<{
+	"enlarge-text": [value: number];
+	"reduce-text": [value: number];
+}>();
+const textSizeChangeValue = 0.2;
 </script>
 
 <template>
@@ -23,7 +27,13 @@ const emit = defineEmits(["enlarge-text"]);
 
 			<p v-html="pContent" />
 
-			<button @click="emit('enlarge-text')">Enlarge text</button>
+			<div class="text-size-controls">
+				<span>Text size:</span>
+
+				<button @click="emit('enlarge-text', textSizeChangeValue)">+</button>
+
+				<button @click="emit('reduce-text', textSizeChangeValue)">-</button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -38,19 +48,24 @@ const emit = defineEmits(["enlarge-text"]);
 .details {
 	flex: 1;
 	margin-left: 1rem;
-	display: flex;
-	flex-direction: column;
 }
 
-.details button {
+.text-size-controls {
 	margin-top: 10px;
-	align-self: center;
-	margin-top: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 15px;
+}
+
+.text-size-controls button {
 	cursor: pointer;
 	border: 2px solid black;
 	border-radius: 5px;
-	font-size: 0.8rem !important;
-	padding: 2px 5px;
+	font-size: 0.8rem;
+	padding: 3px 8px;
+	aspect-ratio: 1;
+	min-height: 28px;
 	background-color: hsla(160, 100%, 37%, 1);
 }
 

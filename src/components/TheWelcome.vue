@@ -56,7 +56,8 @@ const onChange = () => {
 			:iconName="item.iconName"
 			:heading="item.heading"
 			:p-content="item.pContent"
-			@enlarge-text="welcomeItemFontSize += 0.2" />
+			@enlarge-text="value => (welcomeItemFontSize += value)"
+			@reduce-text="value => (welcomeItemFontSize -= value)" />
 	</div>
 </template>
 
