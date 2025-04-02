@@ -5,24 +5,27 @@ const question = ref("");
 const answer = ref("Waiting for the question...");
 const loadingState = ref(false);
 
-watch(question, async (newQuestion, oldQuestion) => {
-	if (newQuestion.includes("?")) {
-		loadingState.value = true;
-		answer.value = "Thinking...";
+watch(
+	() => question.value,
+	async (newQuestion, oldQuestion) => {
+		if (newQuestion.includes("?")) {
+			loadingState.value = true;
+			answer.value = "Thinking...";
 
-		try {
-			const res = await fetch("https://yesno.wtf/api");
-			const receivedAnswer = await res.json().then(objRes => objRes.answer);
-			answer.value = "Answer: '" + receivedAnswer + "'";
-		} catch (error) {
-			answer.value = "Error! Could not reach the API. " + error;
-		} finally {
-			loadingState.value = false;
+			try {
+				const res = await fetch("https://yesno.wtf/api");
+				const receivedAnswer = await res.json().then(objRes => objRes.answer);
+				answer.value = "Answer: '" + receivedAnswer + "'";
+			} catch (error) {
+				answer.value = "Error! Could not reach the API. " + error;
+			} finally {
+				loadingState.value = false;
+			}
+		} else {
+			answer.value = "waiting for a real question with a question mark...";
 		}
-	} else {
-		answer.value = "waiting for a real question with a question mark...";
 	}
-});
+);
 
 const questionInput = useTemplateRef("question-input");
 
