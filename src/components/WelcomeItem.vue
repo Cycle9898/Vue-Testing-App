@@ -17,7 +17,7 @@ const textSizeChangeValue = 0.2;
 <template>
 	<div class="item">
 		<i>
-			<VueIconSvgHelper :name="iconName" />
+			<VueIconSvgHelper class="text-green" :name="iconName" />
 		</i>
 
 		<div class="details">
@@ -67,6 +67,10 @@ const textSizeChangeValue = 0.2;
 	aspect-ratio: 1;
 	min-height: 28px;
 	background-color: hsla(160, 100%, 37%, 1);
+}
+
+.text-green {
+	color: hsla(160, 100%, 37%, 1);
 }
 
 i {
