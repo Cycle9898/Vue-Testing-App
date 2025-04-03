@@ -4,7 +4,6 @@ import VueIconSvgHelper from "./VueIconSvgHelper.vue";
 defineProps<{
 	iconName: string;
 	heading: string;
-	pContent: string;
 }>();
 
 const emit = defineEmits<{
@@ -25,7 +24,7 @@ const textSizeChangeValue = 0.2;
 				{{ heading }}
 			</h3>
 
-			<p v-html="pContent" />
+			<slot name="content"></slot>
 
 			<div class="text-size-controls">
 				<span>Text size:</span>

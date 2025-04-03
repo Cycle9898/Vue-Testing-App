@@ -55,9 +55,12 @@ const onChange = () => {
 			:key="item.heading"
 			:iconName="item.iconName"
 			:heading="item.heading"
-			:p-content="item.pContent"
 			@enlarge-text="value => (welcomeItemFontSize += value)"
-			@reduce-text="value => (welcomeItemFontSize -= value)" />
+			@reduce-text="value => (welcomeItemFontSize -= value)">
+			<template #content>
+				<p v-html="item.pContent"></p>
+			</template>
+		</WelcomeItem>
 	</div>
 </template>
 
