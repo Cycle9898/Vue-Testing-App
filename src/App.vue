@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
+import { provide } from "vue";
+
+provide("secret-word", "I avoid props drilling !");
 </script>
 
 <template>

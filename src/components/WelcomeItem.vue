@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { inject } from "vue";
 import VueIconSvgHelper from "./VueIconSvgHelper.vue";
 
 defineProps<{
 	iconName: string;
 	heading: string;
 }>();
+
+const secretWord = inject("secret-word");
 
 const emit = defineEmits<{
 	"enlarge-text": [value: number];
@@ -20,6 +23,7 @@ const textSizeChangeValue = 0.2;
 		</i>
 
 		<div class="details">
+			<p class="secret">{{ secretWord }}</p>
 			<h3>
 				{{ heading }}
 			</h3>
@@ -47,6 +51,10 @@ const textSizeChangeValue = 0.2;
 .details {
 	flex: 1;
 	margin-left: 1rem;
+}
+
+.secret {
+	display: none;
 }
 
 .text-size-controls {
