@@ -62,7 +62,7 @@ h3 {
 	font-size: 1.1rem;
 	font-weight: 500;
 	padding: 5px;
-	background-color: hsla(160, 100%, 37%, 1);
+	background-color: var(--vue-green);
 	min-width: 200px;
 }
 

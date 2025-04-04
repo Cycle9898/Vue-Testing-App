@@ -58,7 +58,7 @@ onMounted(() => {
 <style scoped>
 .container {
 	padding: 10px 15px;
-	border: 2px solid hsla(160, 100%, 37%, 1);
+	border: 2px solid var(--vue-green);
 	border-radius: 10px;
 }
 

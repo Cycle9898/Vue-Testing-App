@@ -73,11 +73,11 @@ const textSizeChangeValue = 0.2;
 	padding: 3px 8px;
 	aspect-ratio: 1;
 	min-height: 28px;
-	background-color: hsla(160, 100%, 37%, 1);
+	background-color: var(--vue-green);
 }
 
 .text-green {
-	color: hsla(160, 100%, 37%, 1);
+	color: var(--vue-green);
 }
 
 i {
