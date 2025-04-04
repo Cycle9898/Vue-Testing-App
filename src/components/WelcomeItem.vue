@@ -27,11 +27,11 @@ const textSizeChangeValue = 0.2;
 			<slot name="content"></slot>
 
 			<div class="text-size-controls">
-				<span>Text size:</span>
+				<button @click="emit('reduce-text', textSizeChangeValue)">-</button>
+
+				<span>Text size</span>
 
 				<button @click="emit('enlarge-text', textSizeChangeValue)">+</button>
-
-				<button @click="emit('reduce-text', textSizeChangeValue)">-</button>
 			</div>
 		</div>
 	</div>
