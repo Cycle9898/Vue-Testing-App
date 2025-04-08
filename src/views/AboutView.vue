@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import QuestionMod from "@/components/QuestionMod.vue";
+
+const vGreen = {
+	mounted: (element: HTMLElement) => {
+		element.classList.add("green");
+	}
+};
 </script>
 
 <template>
 	<div class="about">
-		<h1 class="green">This is a test about page</h1>
+		<h1 v-green>This is a test about page</h1>
 
 		<QuestionMod />
 	</div>
