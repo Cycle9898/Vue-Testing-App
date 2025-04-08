@@ -2,8 +2,11 @@
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
 import { provide } from "vue";
+import { useMouseIndicator } from "./helpers/mouseCoords";
 
 provide("secret-word", "I avoid props drilling !");
+
+const { xPos, yPos } = useMouseIndicator();
 </script>
 
 <template>
@@ -12,6 +15,11 @@ provide("secret-word", "I avoid props drilling !");
 
 		<div class="wrapper">
 			<HelloWorld msg="You did it!" raw-html="<span>Custom string with HTML added !</span>" :num="36" />
+
+			<div>
+				<p>Mouse X position: {{ xPos }}</p>
+				<p>Mouse Y position: {{ yPos }}</p>
+			</div>
 
 			<nav>
 				<RouterLink to="/">Home</RouterLink>
@@ -74,6 +82,7 @@ nav a:first-of-type {
 		display: flex;
 		place-items: flex-start;
 		flex-wrap: wrap;
+		gap: 5px;
 	}
 
 	nav {
