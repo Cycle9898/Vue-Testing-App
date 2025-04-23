@@ -50,17 +50,19 @@ const onChange = () => {
 	</div>
 
 	<div :style="{ fontSize: welcomeItemFontSize + 'rem' }">
-		<WelcomeItem
-			v-for="item of vueIntroductionPointArray"
-			:key="item.heading"
-			:iconName="item.iconName"
-			:heading="item.heading"
-			@enlarge-text="value => (welcomeItemFontSize += value)"
-			@reduce-text="value => (welcomeItemFontSize -= value)">
-			<template #content>
-				<p v-html="item.pContent"></p>
-			</template>
-		</WelcomeItem>
+		<TransitionGroup name="welcome-items">
+			<WelcomeItem
+				v-for="item of vueIntroductionPointArray"
+				:key="item.heading"
+				:iconName="item.iconName"
+				:heading="item.heading"
+				@enlarge-text="value => (welcomeItemFontSize += value)"
+				@reduce-text="value => (welcomeItemFontSize -= value)">
+				<template #content>
+					<p v-html="item.pContent"></p>
+				</template>
+			</WelcomeItem>
+		</TransitionGroup>
 	</div>
 </template>
 
@@ -80,5 +82,15 @@ const onChange = () => {
 	padding: 5px 10px;
 	text-align: center;
 	font-size: 1rem;
+}
+
+.welcome-items-enter-active,
+.welcome-items-leave-active {
+	transition: transform 0.5s ease;
+}
+
+.welcome-items-enter-from,
+.welcome-items-enter-active {
+	transform: translateX(100px);
 }
 </style>
