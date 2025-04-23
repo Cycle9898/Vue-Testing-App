@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
+import GenericModal from "./GenericModal.vue";
 
 const { msg, rawHtml, num } = defineProps<{
 	msg: string;
@@ -15,11 +16,24 @@ function toggleCustomHtmlDisplay() {
 
 const addPluralOrNot = computed(() => (num && num > 1 ? "s" : ""));
 const changeButtonVerb = computed(() => (isHtmlHidden ? "Display" : "Hide"));
+
+const isOpen = ref(false);
 </script>
 
 <template>
 	<div class="greetings">
 		<h1 :class="{ green: msg }">{{ msg }}</h1>
+
+		<div>
+			<button @click="isOpen = true" class="toggle-btn">Open Modal</button>
+			<Teleport to="body">
+				<GenericModal :isOpen @close="isOpen = false">
+					<template #header>
+						<h1 class="green">Hello Modal !!!</h1>
+					</template>
+				</GenericModal>
+			</Teleport>
+		</div>
 
 		<h3>
 			You’ve successfully created {{ num ?? "a" }} project{{ addPluralOrNot }} with
