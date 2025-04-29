@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import CounterComponent from "@/components/CounterComponent.vue";
 import QuestionMod from "@/components/QuestionMod.vue";
 
 const vGreen = {
@@ -13,6 +14,8 @@ const vGreen = {
 		<h1 v-green>This is a test about page</h1>
 
 		<QuestionMod />
+
+		<CounterComponent />
 	</div>
 </template>
 
