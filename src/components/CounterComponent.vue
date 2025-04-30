@@ -25,4 +25,9 @@ const { increment } = counterStore;
 	border: 2px solid var(--vue-green);
 	border-radius: 10px;
 }
+
+button {
+	margin-top: 15px;
+	margin-bottom: 5px;
+}
 </style>
