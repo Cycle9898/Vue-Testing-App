@@ -1,6 +1,6 @@
 # vue-testing-app
 
-Vue 3 base template where all the docs features has been added.
+Vue 3 base template where all the docs features has been added to test them.
 
 ## Project Setup
 
